@@ -1,0 +1,8 @@
+npx create-next-app .
+npm i -D prisma
+npx prisma init
+    prisma/schema.prisma
+.env -> edit database url
+    - DATABASE_URL="mongodb+srv://ayank007dev:<password>@cluster0.6drsuwz.mongodb.net/workally?retryWrites=true&w=majority&appName=Cluster0"
+npx prisma db push
+npx prisma generate
