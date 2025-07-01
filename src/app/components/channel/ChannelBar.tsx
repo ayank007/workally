@@ -4,18 +4,18 @@ import Link from "next/link";
 import ChannelTab from "./ChannelTab";
 import { StringToURL } from "@/app/actions/StringToURL";
 
-function ChannelBar ({ChannelList}:any) {
-    const Channels = ChannelList.ChannelList;
+function ChannelBar ({props}:any) {
+    const ChannelList = props.ChannelList;
     return (
         <>
             {ChannelList.length == 0 ? (
                 <div>No Channels Added</div>
             ) : (
-                <div id="ChannelBar" className="channelBar fixed top-0 left-0 h-screen bg-[#1E1F22] text-white w-20 flex items-center gap-2 flex-col py-4">
+                <div id="ChannelBar" className="channelBar bg-[#1E1F22] text-white w-20 flex items-center gap-2 flex-col py-4">
                     <>
-                        {Channels.map((channel:any)=>{
+                        {ChannelList.map((channel:any)=>{
                             return (<div key={channel.id}>
-                                <ChannelTab url={"" + StringToURL(channel.title)} name={channel.title} />
+                                <ChannelTab url={"" + StringToURL(channel.title) + channel.id} name={channel.title} />
                             </div>)
                         })}
                     </>

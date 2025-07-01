@@ -11,9 +11,10 @@ const Channel = (ChannelList:any) => {
 
     const addNewChannel = () => {
         try {
-            addChannel(name, "685da8571ad72d3546581ecf");
+            addChannel(name);
         } catch (error) {
             console.log(error);
+            throw(error);
         }
     };
 

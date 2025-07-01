@@ -18,9 +18,9 @@ export async function getChannels() {
 }
 
 
-export async function addChannel(name: string, appId: string) {
+export async function addChannel(name: string) {
     try {
-        const channel = await prisma.channel.create({ data: { title: name, appId: appId } });
+        const channel = await prisma.channel.create({ data: { title: name, appId: "685da8571ad72d3546581ecf" } });
         revalidatePath("/");
         return channel;
     } catch (error) {

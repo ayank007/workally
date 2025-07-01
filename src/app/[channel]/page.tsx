@@ -5,9 +5,10 @@ const Subject =  (
 ) => {
     const {channel} = params;
     return (
-        <div>
-            you are in channel {channel}
-        </div>
+        <>
+            <h1>You are viewing channel {channel}</h1>
+            <p>Select a Subject</p>
+        </>
     );
 }
 
