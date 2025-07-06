@@ -1,14 +1,14 @@
-"use server";
-
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-import {useDispatch} from "react-redux"
-import { addChannelReducer } from "./slice";
-import { getChannels } from "./actions/Actions";
+import { getChannels } from "../actions/Actions";
 import ChannelBar from "./components/channel/ChannelBar";
-import { Head } from "next/document";
+import { TbMenu2 } from "react-icons/tb";
+import { StoreProvider } from "@/store/StoreProvider";
+import SubjectBar from "./components/subject/SubjectBar";
+import ThemeSelector from "./themeSelector";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,23 +32,38 @@ export default async function RootLayout({
 }>) {
 
   const ChannelList = await getChannels();
-  console.log(ChannelList);
-  const dispatch = useDispatch();
-  dispatch(addChannelReducer(ChannelList));
 
   return (
-    <html lang="en">
-      <Head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
-      </Head>
+    <StoreProvider>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div id="App" className="flex h-screen overflow-hidden">
-          <ChannelBar ChannelList={ChannelList} />
-          <div className="channelContent w-full">{children}</div>
+        <div className="drawer lg:drawer-open">
+          <input id="channel-drawer" type="checkbox" className="drawer-toggle" />
+          <div className="drawer-content flex flex-col items-center justify-center bg-base-100 text-base-content">
+            <label htmlFor="channel-drawer" className="btn btn-primary drawer-button lg:hidden">
+              <TbMenu2 />
+            </label>
+            <div className="fixed top-4 right-4 flex gap-2">
+              <select defaultValue="java" className="select select-secondary">
+                <option disabled={true}>Pick a Language</option>
+                <option value="java">Java</option>
+                <option value="python" disabled={true}>Python</option>
+                <option value="javascript" disabled={true}>JavaScript</option>
+              </select>
+              <ThemeSelector />
+            </div>
+            {children}
+          </div>
+          <div className="drawer-side">
+            <label htmlFor="channel-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
+              <div className="flex h-full">
+                <ChannelBar ChannelList={ChannelList} />
+                <SubjectBar />
+              </div>
+          </div>
         </div>
       </body>
-    </html>
+    </StoreProvider>
   );
 }

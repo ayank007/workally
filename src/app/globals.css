@@ -1,5 +1,8 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+@plugin "daisyui" {
+  themes: light, dark --default, valentine, abyss, coffee;
+};
 
 @custom-variant dark (&:is(.dark *));
 
@@ -119,4 +122,34 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+}
+.flex1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active-channel::before,
+.active-subject::before {
+  content: "";
+  position: absolute;
+  top: calc(50% - 4px);
+  transform: translateY(-50%);
+  left: -7px;
+  background-color: white;
+  width: 2px;
+  border-radius: 1.5px;
+  height: 30px;
+}
+
+.active-subject{
+  overflow: hidden;
+}
+.active-subject::before {
+  left: 0px;
 }

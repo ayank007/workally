@@ -56,6 +56,9 @@ model Topic {
   description String
   testcase String
   code String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Cheatsheet {
@@ -66,4 +69,7 @@ model Cheatsheet {
 
   title String
   content String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
