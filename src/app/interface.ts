@@ -34,3 +34,16 @@ interface CheatSheet {
     createdAt: Date
     updatedAt: Date
 }
+interface User {
+    id: string
+    name: string
+    email: string
+    password: string
+    isVerified: boolean
+    isPrime: boolean
+    isAdmin: boolean
+    verificationToken?: string
+    verificationExpiry?: Date
+    forgetPasswordToken?: string
+    forgetPasswordExpiry?: Date
+}

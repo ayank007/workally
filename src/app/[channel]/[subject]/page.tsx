@@ -13,11 +13,15 @@ import { useDispatch, useSelector } from "react-redux";
 const SubjectPage =  () => {
     const dispatch = useDispatch();
     const Pathname = usePathname();
-    const currentChannelID = Pathname.split("/")[1].split("-").at(-1);
-    const currentSubjectID = Pathname.split("/")[2].split("-").at(-1);    
+    // const currentChannelID = Pathname.split("/")[1].split("-").at(-1);
+    // const currentSubjectID = Pathname.split("/")[2].split("-").at(-1);
+    const currentChannelID = Pathname.split("/")[1];
+    const currentSubjectID = Pathname.split("/")[2];    
 
     // Getting Channel List from store
     const ChannelList = useSelector((state: RootState) => state.channelList.value);
+
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
 
@@ -51,6 +55,8 @@ const SubjectPage =  () => {
                 });
                 
                 dispatch(channelReducer({ value: newChannelList }));
+
+                setLoading(false);
             }
         }
         
@@ -73,7 +79,7 @@ const SubjectPage =  () => {
 
     return (
         <>
-            <Topic />
+            <Topic loading={loading} />
             <div className="drawer drawer-end">
                 <input id="my-drawer-cs" type="checkbox" className="drawer-toggle" />
                 <label htmlFor="my-drawer-cs">

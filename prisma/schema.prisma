@@ -73,3 +73,21 @@ model Cheatsheet {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
+
+model Users {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  name String
+  email String @unique
+  password String
+
+  isVerified Boolean @default(false)
+  verificationToken String
+  verificationExpiry DateTime
+
+  forgotPasswordToken String
+  forgotPasswordExpiry DateTime
+
+  isPrime Boolean @default(false)
+  isAdmin Boolean @default(false)
+}

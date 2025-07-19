@@ -47,7 +47,7 @@ function ChannelBar ({ChannelList}:{ChannelList:Channel[]}) {
                     const url = "" + StringToURL(channel.title) + "-" + channel.id;
                     
                     return (<li key={channel.id}>
-                        <ChannelTab url={url} name={channel.title} />
+                        <ChannelTab url={"/" + channel.id} name={channel.title} />
                     </li>)
                 })
             )}

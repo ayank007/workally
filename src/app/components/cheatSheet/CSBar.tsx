@@ -17,7 +17,7 @@ const CSBar = () => {
     console.log(CSList);
 
     return (
-        <div className="CSBar">
+        <div className="CSBar z-20">
             {
                 CSList.length == 0 ? (<div className="text-center w-full text-lg mt-2">No Cheat Sheet Available for This Subject</div>) :
                 CSList.map((item: any) => {

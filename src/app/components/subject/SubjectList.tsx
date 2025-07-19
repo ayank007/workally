@@ -8,7 +8,7 @@ function SubjectList ({SubjectList}:{SubjectList:Subject[]}) {
     const channelLink = usePathname();
     
     return (
-        <ul className="menu bg-base-100 text-base-content min-h-full p-3">
+        <ul className="menu bg-base-100 text-base-content min-h-full p-3 flex-nowrap overflow-x-hidden overflow-y-auto">
             <label className="input w-56">
                 <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                     <g
@@ -34,7 +34,7 @@ function SubjectList ({SubjectList}:{SubjectList:Subject[]}) {
                     const url = channelLink + "/" + StringToURL(subject.title) + "-" + subject.id;
                     
                     return (<li key={subject.id}>
-                        <SubjectTab url={url} name={subject.title} />
+                        <SubjectTab url={channelLink + "/" + subject.id} name={subject.title} />
                     </li>)
                 })
             )}

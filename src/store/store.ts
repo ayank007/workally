@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import channelSlice from './channelSlice';
+import themeSlice from './themeSlice';
 
 export const store = configureStore({
     reducer: {
-        channelList: channelSlice
+        channelList: channelSlice,
+        uiTheme: themeSlice
     }
 })
 

@@ -32,18 +32,12 @@ export default function CodeBlock({ code, language }: { code: string, language: 
     }
     `.trim();
 
-    const [theme, setTheme] = useState("dark");
-    useEffect(() => {
-        const storedTheme = localStorage.getItem('theme');
-        if (storedTheme) {
-            setTheme(storedTheme);
-        }
-    },[]);
+    const theme = useSelector((state: RootState) => state.uiTheme.value);
 
     const [codeTheme, setCodeTheme] = useState(nightOwl);
 
     useEffect(() => {
-        setCodeTheme(theme === "dark" ? nightOwl : base16AteliersulphurpoolLight);
+        setCodeTheme(theme === "light" || theme === "valentine" ? base16AteliersulphurpoolLight : nightOwl);
     },[theme])
     return (
         <SyntaxHighlighter 
@@ -57,7 +51,7 @@ export default function CodeBlock({ code, language }: { code: string, language: 
                 fontSize: '14px',
                 overflowX: 'auto',
             }}
-            className={""}>
+            className={"whitespace-pre-wrap break-words word-break break-all theme-" + theme}>
                 {code}
         </SyntaxHighlighter>
     );
