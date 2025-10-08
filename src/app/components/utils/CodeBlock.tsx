@@ -1,8 +1,8 @@
 import { RootState } from '@/store/store';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { nightOwl, base16AteliersulphurpoolLight } from 'react-syntax-highlighter/dist/cjs/styles/prism';
+import SyntaxHighlighter from 'react-syntax-highlighter';
+// import { docco } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 
 export default function CodeBlock({ code, language }: { code: string, language: string }) {
@@ -34,15 +34,16 @@ export default function CodeBlock({ code, language }: { code: string, language: 
 
     const theme = useSelector((state: RootState) => state.uiTheme.value);
 
+    const nightOwl = "docco";
     const [codeTheme, setCodeTheme] = useState(nightOwl);
 
     useEffect(() => {
-        setCodeTheme(theme === "light" || theme === "valentine" ? base16AteliersulphurpoolLight : nightOwl);
+        setCodeTheme(theme === "light" || theme === "valentine" ? nightOwl : nightOwl);
     },[theme])
     return (
         <SyntaxHighlighter 
             language={language}
-            style={codeTheme}
+            // style={codeTheme}
             showLineNumbers={true}
             wrapLines={true}
             customStyle={{

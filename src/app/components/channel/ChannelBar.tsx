@@ -7,8 +7,10 @@ import { channelReducer } from "@/store/channelSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
+import { FaTools } from "react-icons/fa";
+
 function ChannelBar ({ChannelList}:{ChannelList:Channel[]}) {
-    
+
     const dispatch = useDispatch();
     useEffect( () => {
         let updatedChannelList = [...ChannelList];
@@ -39,18 +41,21 @@ function ChannelBar ({ChannelList}:{ChannelList:Channel[]}) {
     }, [ChannelList, dispatch]);
     
     return (
-        <ul className="menu bg-base-300 text-base-content min-h-full p-3">
-            {ChannelList.length == 0 ? (
-                <div>No Channels Added</div>
-            ) : (
+        <ul className="menu bg-base-300 text-base-content min-h-full p-3 flex flex-col overflow-x-hidden overflow-y-auto flex-nowrap">
+            <>{
                 ChannelList.map((channel:Channel)=>{
-                    const url = "" + StringToURL(channel.title) + "-" + channel.id;
-                    
-                    return (<li key={channel.id}>
-                        <ChannelTab url={"/" + channel.id} name={channel.title} />
-                    </li>)
+                    return(
+                        <li key={channel.id}>
+                            <ChannelTab url={"/" + channel.id} name={channel.title} />
+                        </li>
+                    );
                 })
-            )}
+            }</>
+            <li key={"tools"}>
+                <ChannelTab url={"/tools"} name={"Tools"} icon={true}>
+                    <FaTools />
+                </ChannelTab>
+            </li>
             <li className="mt-auto">
                 <ChannelTab url="/dashboard" name="&#9827;" />
             </li>

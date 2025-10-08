@@ -32,7 +32,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
 
-  const ChannelList = await getChannels();
+  const ChannelList = await getChannels();  
 
   return (
     <StoreProvider>
@@ -60,7 +60,7 @@ export default async function RootLayout({
             <div className="drawer-side">
               <label htmlFor="channel-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
                 <div className="flex h-full">
-                  <ChannelBar ChannelList={ChannelList} />
+                  <ChannelBar key={"ChannelBar"} ChannelList={ChannelList} />
                   <SubjectBar />
                 </div>
             </div>

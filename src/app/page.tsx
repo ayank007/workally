@@ -15,12 +15,17 @@ export default function Home() {
         {channels.length == 0 ? (
           <div>No Channels Added</div>
         ) : (
-          channels.map((channel: any)=>{
-            const url = "/" + StringToURL(channel.title) + "-" + channel.id;
-              return (
-                <ChannelTab key={channel.id} url={"/" + channel.id} name={channel.title} />
-              );
-          })
+          <>
+            {
+              channels.map((channel: any)=>{
+                const url = "/" + StringToURL(channel.title) + "-" + channel.id;
+                  return (
+                    <ChannelTab key={channel.id} url={"/" + channel.id} name={channel.title} />
+                  );
+              })
+            }
+            <ChannelTab key={"tools"} url={"/tools"} name={"Tools"} />
+          </>
         )}
       </div>
     </div>

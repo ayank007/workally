@@ -42,7 +42,7 @@ export async function getChannels() {
         return serializeDates(channels);
     } catch (error:any) {
         console.log(error);
-        throw new Error(error.message);
+        return [];
     }
 }
 
