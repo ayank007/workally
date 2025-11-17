@@ -4001,12 +4001,14 @@ const Page = () => {
 
     useEffect(() => {
         updatePalette(pickedColor);
-    }, [pickedColor, updatePalette]);
+    }, [pickedColor]);
     
     const openEyeDropper = async () => {
-        if (!window.EyeDropper) {
-        alert("EyeDropper API is not supported in this browser.");
-        return;
+        if (typeof window === 'undefined' || !window.EyeDropper) { 
+            if (typeof window !== 'undefined') {
+                alert("EyeDropper API is not supported in this browser.");
+            }
+            return;
         }
 
         const eyeDropper = new EyeDropper();
@@ -4021,9 +4023,11 @@ const Page = () => {
     };
 
     return (
-        <div className="px-base text-center pt-20 pb-8 w-full px-4">
+        <div className="px-base text-center pt-8 pb-8 w-full px-4">
+            <div className="information text-left">
             <h1>Color Picker</h1>
             <p>Pick Your Favorite Color, Know It's Name & Generate a Color Palate</p>
+            </div>
             <div className="divider divider-base w-full"></div>
             <div className="flex flex-col md:flex-row gap-8 items-center w-full justify-center my-4">
                 <div className="w-full md:w-1/2 bg-base-300 p-4">
@@ -4057,7 +4061,7 @@ const Page = () => {
                         </div>
                         <div className="bg-base-300 mt-3 w-full p-4">
                             <h4 className="bold text-xl">Closest Color Name</h4>
-                            <p className="badge badge-success py-5 px-5 font-bold text-xl my-2">{result.name}</p>
+                            <p className="badge badge-success py-5 px-5 h-auto font-bold text-xl my-2">{result.name}</p>
                             <p>{"("+result.hex+")"}</p>
                         </div>
                         {/* <button type="button" className="btn btn-primary mt-4">Generate Color Palette</button> */}

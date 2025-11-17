@@ -40,11 +40,16 @@ export default function CodeBlock({ code, language }: { code: string, language: 
     useEffect(() => {
         setCodeTheme(theme === "light" || theme === "valentine" ? nightOwl : nightOwl);
     },[theme])
+
+    let showLineNumbers = true;
+    if (language == "markdown") {
+        showLineNumbers = false;
+    }
     return (
         <SyntaxHighlighter 
             language={language}
             // style={codeTheme}
-            showLineNumbers={true}
+            showLineNumbers={showLineNumbers}
             wrapLines={true}
             customStyle={{
                 borderRadius: '8px',

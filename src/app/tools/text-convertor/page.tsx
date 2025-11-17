@@ -169,9 +169,11 @@ const Page = () => {
     }
 
     return (
-        <div className="px-base text-center pt-20 pb-8">
-            <h1>Text Convertor</h1>
-            <p>Convert text to other formats.</p>
+        <div className="px-base text-center pt-8 pb-8">
+            <div className="information text-left">
+                <h1>Text Convertor</h1>
+                <p>Convert text to other formats.</p>
+            </div>
             <div className="divider divider-base w-full"></div>
             <h5>Input Text:</h5>
             <textarea className="w-full h-40 resize-y border border-text-500/50 p-4 mt-2" placeholder={"Write your text here..."} value={text} onChange={(e) => setText(e.target.value)}></textarea>
